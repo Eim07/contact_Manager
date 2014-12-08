@@ -1,0 +1,190 @@
+      <!doctype html>
+      <html>
+      <head>
+      <meta charset="UTF-8">
+      <title>6Final_contact_manager</title>
+      
+      <script>
+      
+      window.onload = init;
+      
+      function init()
+      {
+      document.getElementById("submitBtn").addEventListener("click", submitHandler);
+      
+      //listener added for clicks on the submit button
+     
+      
+      var peopleList = new Array();
+      //creating array object in which to place each person
+      
+      
+      function submitHandler()
+      
+      {
+          //var submitBtn = document.getElementById("submitBtn");
+      
+          alert('submit button was clicked');
+          //alerting button clicked
+          var person = new Object();
+          //creating person object
+                   
+                 person.firstName = document.getElementById("firstName").value;
+                 person.lastName = document.getElementById("lastName").value;
+                 person.dob = document.getElementById("dd/mm/yyyy").value;
+                 person.phoneNum = document.getElementById("phoneNum").value;
+                 person.email = document.getElementById("email").value;
+                 //properties for person object  
+                 
+                 var submitBtn = document.getElementById("submitBtn");	
+                    
+                    submitBtn.onclick = peopleList.push(person);
+                    //adding a person to the array
+                    submitBtn.onclick = makeTable();   
+      }
+      
+      
+          function makeTable()
+      {
+              var tableBody = document.getElementById("tableBody");
+              
+              //alert('somebody input some data');
+              //tableBody.innerHTML = " ";
+              //reset contents to nil but is happening as you type int the box....i.e. overwriting itself
+              
+              for(var i= 0; i< peopleList.length; i++)
+              //while i < people list length, keep looping)
+              
+              
+              {
+              
+              var row = tableBody.insertRow(-1);
+              //inserting row to display details
+          
+          
+         
+              var fnameCell = row.insertCell(0);
+                  fnameCell.innerHTML = document.getElementById("firstName").value;
+                  //fnameCell.innerHTML = peopleList.firstName[i]; //this did not work
+                   //td.innerHTML = document.getElementById("firstName").value[i]; //another attempt not working
+              var fn = document.createTextNode("");
+                  fnameCell.appendChild(fn);
+                  
+              var lnameCell = row.insertCell(1);
+                  lnameCell.innerHTML = document.getElementById("lastName").value;
+              var ln = document.createTextNode("");
+                  lnameCell.appendChild(ln);
+                  
+              var dobCell = row.insertCell(2);
+                  dobCell.innerHTML = document.getElementById("dd/mm/yyyy").value;
+              var dob = document.createTextNode("");	
+                  dobCell.appendChild(dob);
+                  
+              var phoneCell = row.insertCell(3);
+                  phoneCell.innerHTML = document.getElementById("phoneNum").value;
+              var phone = document.createTextNode("");	
+                  phoneCell.appendChild(phone);
+                  
+              var emailCell = row.insertCell(4);
+                  emailCell.innerHTML = document.getElementById("email").value;
+              var email = document.createTextNode("");	
+                  emailCell.appendChild(email);
+                  
+                
+              var deleteCell = row.insertCell(5);
+              var newButton = document.createElement("button");
+                  newButton.innerHTML = ("Delete");
+                  deleteCell.appendChild(newButton);
+				  
+				    newButton.addEventListener("click", deleteContact, false);
+                 
+                  //making and displaying the list of properties for each property of a person
+                  
+                  if (peopleList.push(person) == true)
+                  {
+                      "<br>"
+                      tableBody.innerHTML = " ";
+                  }
+                  
+                  else
+                  {
+                      i++;
+                  }
+                  
+              function deleteContact()
+			  {
+				  if (newButton.click == true)
+				  {
+					  peopleList.splice(person);
+				  }
+			  }
+			  
+                 
+                  
+              }
+              
+              //the above is adding the second person, but only after looping through every character typed it seems
+              
+                  //peopleList.forEach(makeTable(person){
+                      //"<br>"(peopleList);})
+                      
+                //this method is having a similar result
+                      
+              
+              //arr.forEach(function (item){someFn(item);})	from W3 Schools
+        
+		}
+		}
+		
+      
+      
+      </script>
+      <link href="../../Documents/vikinghomesproject/contactManager/contactManager copy.css" rel="stylesheet" type="text/css">
+      </head>
+      
+      <body id = "body">
+      <div id = "formStyle">
+        <form id = "inputData" >
+          <br>
+          <br>
+          <label class="label">First name</label>
+          <input type="text" class="inputBox" id="firstName">
+          <br>
+          <label class="label">Last name</label>
+          <input type="text" class="inputBox" id="lastName">
+          <br>
+          <label class="label">Date of Birth</label>
+          <input type="text" class="inputBox" id="dd/mm/yyyy">
+          <br>
+          <label class="label">Phone Number</label>
+          <input type="text" class="inputBox" id="phoneNum">
+          <br>
+          <label class="label">Email Address</label>
+          <input type="text" class="inputBox" id="email">
+          <br>
+          <br>
+          <button type="button" id="submitBtn">
+          Submit details
+          </button>
+          <br>
+          <br>
+        </form>
+      </div>
+      <div>
+        <table id = "manager">
+          <thead id = "tableHead">
+          <tr><th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Telephone Number</th>
+            <th scope="col">Email Address</th></tr>
+            </thead>
+          <tbody id="tableBody">
+            
+            <!--   <td><button id = "delete">Delete Contact</button></td> -->
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+      </body>
+      </html>
